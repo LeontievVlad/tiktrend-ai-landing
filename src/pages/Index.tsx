@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Sparkles, TrendingUp, Zap, Mail, Instagram, Twitter } from "lucide-react";
+import { Sparkles, TrendingUp, Zap, Mail, Instagram, Linkedin } from "lucide-react";
 import { toast } from "sonner";
 
 const Index = () => {
@@ -248,9 +248,9 @@ const Index = () => {
             <div>
               <h4 className="font-semibold mb-4">Контакти</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <a href="mailto:hello@tiktrend.ai" className="flex items-center gap-2 hover:text-primary transition-colors">
+                <a href="mailto:info@tiktrend.ai" className="flex items-center gap-2 hover:text-primary transition-colors">
                   <Mail className="w-4 h-4" />
-                  hello@tiktrend.ai
+                  info@tiktrend.ai
                 </a>
               </div>
             </div>
@@ -267,9 +267,9 @@ const Index = () => {
                 <a
                   href="#"
                   className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
-                  aria-label="Twitter"
+                  aria-label="LinkedIn"
                 >
-                  <Twitter className="w-5 h-5" />
+                  <Linkedin className="w-5 h-5" />
                 </a>
               </div>
             </div>
