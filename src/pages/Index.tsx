@@ -19,17 +19,17 @@ const Index = () => {
     
     // Validation
     if (!formData.name || !formData.email || !formData.niche) {
-      toast.error("Будь ласка, заповніть всі поля");
+      toast.error("Please fill in all fields");
       return;
     }
 
     if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      toast.error("Введіть коректний email");
+      toast.error("Please enter a valid email");
       return;
     }
 
     // Show success message
-    toast.success("Дякуємо! Ми зв'яжемося з вами найближчим часом 🎉");
+    toast.success("Thank you! We'll contact you soon 🎉");
     
     // Reset form
     setFormData({
@@ -60,14 +60,14 @@ const Index = () => {
       <section className="container mx-auto px-4 py-20 text-center">
         <div className="max-w-4xl mx-auto space-y-8">
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-            Отримуй тренди і ідеї для{" "}
+            Get Trends and Ideas for Your{" "}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               TikTok
             </span>
-            {" "}каналу
+            {" "}Channel
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-            Використовуй силу AI для аналізу трендів, генерації хештегів та текстів під відео
+            Leverage AI to analyze trends, generate hashtags, and create captions for your videos
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
             <Button
@@ -75,10 +75,10 @@ const Index = () => {
               size="lg"
               onClick={() => document.getElementById("early-access")?.scrollIntoView({ behavior: "smooth" })}
             >
-              Отримати ранній доступ
+              Get Early Access
             </Button>
             <Button variant="outline" size="lg">
-              Дізнатися більше
+              Learn More
             </Button>
           </div>
         </div>
@@ -88,35 +88,35 @@ const Index = () => {
       <section className="container mx-auto px-4 py-20">
         <div className="max-w-5xl mx-auto">
           <div className="bg-card rounded-3xl p-8 md:p-12 shadow-elegant border">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Про продукт</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">About the Product</h2>
             <div className="space-y-6 text-lg text-muted-foreground">
               <p>
-                <span className="font-semibold text-foreground">TikTrend AI</span> — твій особистий асистент для створення вірусного контенту. 
-                Наш AI аналізує твою нішу, знаходить актуальні тренди та допомагає створювати контент, який зацікавить аудиторію.
+                <span className="font-semibold text-foreground">TikTrend AI</span> is your personal assistant for creating viral content. 
+                Our AI analyzes your niche, finds relevant trends, and helps you create content that engages your audience.
               </p>
               <div className="grid md:grid-cols-2 gap-6 pt-4">
                 <div className="space-y-2">
                   <h3 className="text-xl font-semibold text-foreground flex items-center gap-2">
                     <TrendingUp className="w-5 h-5 text-primary" />
-                    Що ми робимо
+                    What We Do
                   </h3>
                   <ul className="space-y-2 text-base">
-                    <li>• Аналіз твоєї ніші в TikTok</li>
-                    <li>• Підбір актуальних трендів</li>
-                    <li>• Генерація хештегів та текстів</li>
-                    <li>• Ідеї для нового контенту</li>
+                    <li>• Analyze your TikTok niche</li>
+                    <li>• Find relevant trends</li>
+                    <li>• Generate hashtags and captions</li>
+                    <li>• Provide ideas for new content</li>
                   </ul>
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-xl font-semibold text-foreground flex items-center gap-2">
                     <Zap className="w-5 h-5 text-secondary" />
-                    Твоя цінність
+                    Your Value
                   </h3>
                   <ul className="space-y-2 text-base">
-                    <li>• Економиш години на дослідження</li>
-                    <li>• Зростаєш швидше за конкурентів</li>
-                    <li>• Завжди в тренді</li>
-                    <li>• Більше часу на творчість</li>
+                    <li>• Save hours on research</li>
+                    <li>• Grow faster than competitors</li>
+                    <li>• Always stay on trend</li>
+                    <li>• More time for creativity</li>
                   </ul>
                 </div>
               </div>
@@ -130,17 +130,17 @@ const Index = () => {
         <div className="max-w-2xl mx-auto">
           <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-3xl p-8 md:p-12 border-2 border-primary/20">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-              Отримай ранній доступ
+              Get Early Access
             </h2>
             <p className="text-muted-foreground text-center mb-8">
-              Залиш контакти, і ми повідомимо тебе першим про запуск
+              Leave your contact details, and we'll notify you first when we launch
             </p>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="name">Ім'я</Label>
+                <Label htmlFor="name">Name</Label>
                 <Input
                   id="name"
-                  placeholder="Введи своє ім'я"
+                  placeholder="Enter your name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
@@ -151,17 +151,17 @@ const Index = () => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="твій@email.com"
+                  placeholder="your@email.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="niche">TikTok ніша</Label>
+                <Label htmlFor="niche">TikTok Niche</Label>
                 <Input
                   id="niche"
-                  placeholder="Наприклад: красота, фітнес, освіта..."
+                  placeholder="For example: beauty, fitness, education..."
                   value={formData.niche}
                   onChange={(e) => setFormData({ ...formData, niche: e.target.value })}
                   required
@@ -179,11 +179,11 @@ const Index = () => {
                   htmlFor="beta"
                   className="text-sm font-normal cursor-pointer"
                 >
-                  Хочу бета-доступ та ранні оновлення
+                  I want beta access and early updates
                 </Label>
               </div>
               <Button variant="hero" size="lg" type="submit" className="w-full">
-                Приєднатися до списку очікування
+                Join the Waitlist
               </Button>
             </form>
           </div>
@@ -194,34 +194,34 @@ const Index = () => {
       <section className="container mx-auto px-4 py-20">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            Чому варто спробувати?
+            Why Try It?
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-card rounded-2xl p-8 shadow-lg border hover:shadow-elegant transition-shadow">
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                 <Sparkles className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Персоналізовані тренди</h3>
+              <h3 className="text-xl font-semibold mb-3">Personalized trend suggestions tailored to your niche</h3>
               <p className="text-muted-foreground">
-                AI аналізує саме твою нішу і знаходить тренди, які підходять тобі, а не всім підряд
-              </p>
-            </div>
-            <div className="bg-card rounded-2xl p-8 shadow-lg border hover:shadow-elegant transition-shadow">
-              <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center mb-4">
-                <TrendingUp className="w-6 h-6 text-secondary" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">AI пропонує ідеї та тексти</h3>
-              <p className="text-muted-foreground">
-                Забудь про writer's block. AI створює готові ідеї та підписи для твоїх відео
+                AI analyzes your specific niche and finds trends that suit you, not everyone else
               </p>
             </div>
             <div className="bg-card rounded-2xl p-8 shadow-lg border hover:shadow-elegant transition-shadow">
               <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
-                <Zap className="w-6 h-6 text-accent" />
+                <TrendingUp className="w-6 h-6 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Легкий старт навіть для новачків</h3>
+              <h3 className="text-xl font-semibold mb-3">AI generates hashtags and captions for your videos</h3>
               <p className="text-muted-foreground">
-                Інтуїтивний інтерфейс та готові рекомендації. Не потрібно бути експертом
+                Forget about writer's block. AI creates ready-made ideas and captions for your videos
+              </p>
+            </div>
+            <div className="bg-card rounded-2xl p-8 shadow-lg border hover:shadow-elegant transition-shadow">
+              <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center mb-4">
+                <Zap className="w-6 h-6 text-secondary" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Easy start, even for beginners</h3>
+              <p className="text-muted-foreground">
+                Intuitive interface and ready recommendations. No need to be an expert
               </p>
             </div>
           </div>
@@ -242,11 +242,11 @@ const Index = () => {
                 </span>
               </div>
               <p className="text-sm text-muted-foreground">
-                AI-помічник для створення вірусного TikTok контенту
+                AI assistant for creating viral TikTok content
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Контакти</h4>
+              <h4 className="font-semibold mb-4">Contact</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
                 <a href="mailto:info@tiktrend.ai" className="flex items-center gap-2 hover:text-primary transition-colors">
                   <Mail className="w-4 h-4" />
@@ -255,7 +255,7 @@ const Index = () => {
               </div>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Соцмережі</h4>
+              <h4 className="font-semibold mb-4">Social Media</h4>
               <div className="flex gap-4">
                 <a
                   href="#"
@@ -275,7 +275,7 @@ const Index = () => {
             </div>
           </div>
           <div className="pt-8 border-t text-center text-sm text-muted-foreground">
-            <p>© 2025 TikTrend AI. Всі права захищені.</p>
+            <p>© 2025 TikTrend AI. All rights reserved.</p>
           </div>
         </div>
       </footer>
