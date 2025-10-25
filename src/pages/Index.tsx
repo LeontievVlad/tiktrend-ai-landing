@@ -6,6 +6,15 @@ import { Label } from "@/components/ui/label";
 import { Sparkles, TrendingUp, Zap, Mail } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+// Frontend validation schema
+const formSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  niche: z.string().trim().min(1, "TikTok niche is required").max(200, "Niche must be less than 200 characters"),
+  betaAccess: z.boolean(),
+});
 
 const Index = () => {
   const [formData, setFormData] = useState({
@@ -20,14 +29,12 @@ const Index = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validation
-    if (!formData.name || !formData.email || !formData.niche) {
-      toast.error("Please fill in all fields");
-      return;
-    }
+    // Validate form data with zod
+    const validationResult = formSchema.safeParse(formData);
 
-    if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      toast.error("Please enter a valid email");
+    if (!validationResult.success) {
+      const firstError = validationResult.error.errors[0];
+      toast.error(firstError.message);
       return;
     }
 
