@@ -5,6 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Sparkles, TrendingUp, Zap, Mail, Instagram, Linkedin } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +15,9 @@ const Index = () => {
     betaAccess: false,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validation
@@ -28,16 +31,37 @@ const Index = () => {
       return;
     }
 
-    // Show success message
-    toast.success("Thank you! We'll contact you soon 🎉");
-    
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      niche: "",
-      betaAccess: false,
-    });
+    setIsSubmitting(true);
+
+    try {
+      // Call the edge function
+      const { data, error } = await supabase.functions.invoke('send-early-access', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          niche: formData.niche,
+          betaAccess: formData.betaAccess,
+        },
+      });
+
+      if (error) throw error;
+
+      // Show success message
+      toast.success("Thank you! You'll get early access soon.");
+      
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        niche: "",
+        betaAccess: false,
+      });
+    } catch (error: any) {
+      console.error("Error submitting form:", error);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -182,8 +206,14 @@ const Index = () => {
                   I want beta access and early updates
                 </Label>
               </div>
-              <Button variant="hero" size="lg" type="submit" className="w-full">
-                Join the Waitlist
+              <Button 
+                variant="hero" 
+                size="lg" 
+                type="submit" 
+                className="w-full"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Submitting..." : "Join the Waitlist"}
               </Button>
             </form>
           </div>
@@ -248,9 +278,9 @@ const Index = () => {
             <div>
               <h4 className="font-semibold mb-4">Contact</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <a href="mailto:info@tiktrend.ai" className="flex items-center gap-2 hover:text-primary transition-colors">
+                <a href="mailto:tiktrendai@gmail.com" className="flex items-center gap-2 hover:text-primary transition-colors">
                   <Mail className="w-4 h-4" />
-                  info@tiktrend.ai
+                  tiktrendai@gmail.com
                 </a>
               </div>
             </div>
