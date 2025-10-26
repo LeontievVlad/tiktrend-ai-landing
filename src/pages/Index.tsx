@@ -56,6 +56,15 @@ const Index = () => {
       // Show success message
       toast.success("✅ Thank you! We'll be in touch soon.");
       
+      // Google Analytics event tracking
+      if (typeof window !== "undefined" && (window as any).gtag) {
+        (window as any).gtag('event', 'form_submit', {
+          event_category: 'engagement',
+          event_label: 'early_access_signup',
+          value: 1
+        });
+      }
+
       // Reset form
       setFormData({
         name: "",
