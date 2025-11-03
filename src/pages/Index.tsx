@@ -242,12 +242,12 @@ const Index = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             Why Try It?
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-4 gap-8">
             <div className="bg-card rounded-2xl p-8 shadow-lg border hover:shadow-elegant transition-shadow">
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                 <Sparkles className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Personalized trend suggestions tailored to your niche</h3>
+              <h3 className="text-xl font-semibold mb-4">Personalized trend suggestions tailored to your niche</h3>
               <p className="text-muted-foreground">
                 AI analyzes your specific niche and finds trends that suit you, not everyone else
               </p>
@@ -256,7 +256,7 @@ const Index = () => {
               <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
                 <TrendingUp className="w-6 h-6 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">AI generates hashtags and captions for your videos</h3>
+              <h3 className="text-xl font-semibold mb-4">AI generates hashtags and captions for your videos</h3>
               <p className="text-muted-foreground">
                 Forget about writer's block. AI creates ready-made ideas and captions for your videos
               </p>
@@ -265,7 +265,7 @@ const Index = () => {
               <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center mb-4">
                 <Zap className="w-6 h-6 text-secondary" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Easy start, even for beginners</h3>
+              <h3 className="text-xl font-semibold mb-4">Easy start, even for beginners</h3>
               <p className="text-muted-foreground">
                 Intuitive interface and ready recommendations. No need to be an expert
               </p>
@@ -274,54 +274,84 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="container mx-auto px-4 py-12 border-t">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-white" />
-                </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  TikTrend AI
-                </span>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                AI assistant for creating viral TikTok content
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Contact</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <a href="mailto:tiktrendai@gmail.com" className="flex items-center gap-2 hover:text-primary transition-colors">
-                  <Mail className="w-4 h-4" />
-                  tiktrendai@gmail.com
-                </a>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Social Media</h4>
-              <div className="flex gap-4">
-                <a
-                  href="https://tiktok.com/@tiktrendaiapp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
-                  aria-label="TikTok"
-                >
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
+      <footer className="border-t bg-background">
+  <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+      
+      {/* Brand */}
+      <div>
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-sm">
+            <Sparkles className="w-5 h-5 text-white" />
           </div>
-          <div className="pt-8 border-t text-center text-sm text-muted-foreground">
-            <p>© 2025 TikTrend AI. All rights reserved.</p>
-          </div>
+          <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            TikTrend AI
+          </span>
         </div>
-      </footer>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          AI assistant that helps you create viral TikTok content effortlessly.
+        </p>
+      </div>
+
+      {/* Contact */}
+      <div>
+        <h4 className="font-semibold text-foreground mb-4">Contact</h4>
+        <div className="space-y-2 text-sm text-muted-foreground">
+          <a
+            href="mailto:tiktrendai@gmail.com"
+            className="flex items-center gap-2 hover:text-primary transition-colors"
+          >
+            <Mail className="w-4 h-4" />
+            tiktrendai@gmail.com
+          </a>
+        </div>
+      </div>
+
+      {/* Social */}
+      <div>
+        <h4 className="font-semibold text-foreground mb-4">Social Media   1</h4>
+        <div className="flex gap-3">
+          <a
+            href="https://tiktok.com/@tiktrendaiapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+            aria-label="TikTok"
+          >
+            <svg
+              className="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      {/* Legal */}
+      <div>
+        <h4 className="font-semibold text-foreground mb-4">Privacy Policy</h4>
+        <div className="flex gap-3">
+          <a
+            href="/privacy"
+            aria-label="Privacy Policy"
+          >
+            Privacy Policy
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div className="border-t pt-8 text-center text-sm text-muted-foreground">
+      <p>© 2025 TikTrend AI. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+
+
     </div>
   );
 };
