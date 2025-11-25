@@ -175,7 +175,7 @@ const Index = () => {
               <Input
                 id="topic"
                 type="text"
-                placeholder="Введи тему відео..."
+                placeholder="Enter video topic..."
                 value={hookTopic}
                 onChange={(e) => setHookTopic(e.target.value)}
                 className="text-lg"
