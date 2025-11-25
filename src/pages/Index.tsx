@@ -159,7 +159,7 @@ const Index = () => {
             >
               Get Early Access
             </Button>
-            <Button variant="outline" size="lg">
+            <Button variant="outline" size="lg" onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}>
               Learn More
             </Button>
           </div>
@@ -220,7 +220,7 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section className="container mx-auto px-4 py-20">
+      <section id="about" className="container mx-auto px-4 py-20">
         <div className="max-w-5xl mx-auto">
           <div className="bg-card rounded-3xl p-8 md:p-12 shadow-elegant border">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">About the Product</h2>
