@@ -138,8 +138,36 @@ const Index = () => {
         </div>
       </header>
 
+      {/* Hero Section */}
+      <section className="container mx-auto px-4 py-20 text-center">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+            Get Trends and Ideas for Your{" "}
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              TikTok
+            </span>
+            {" "}Channel
+          </h1>
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
+            Leverage AI to analyze trends, generate hashtags, and create captions for your videos
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+            <Button
+              variant="hero"
+              size="lg"
+              onClick={() => document.getElementById("early-access")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              Get Early Access
+            </Button>
+            <Button variant="outline" size="lg">
+              Learn More
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Hook Generator Section */}
-      <section className="container mx-auto px-4 py-12">
+      <section className="container mx-auto px-4 py-20">
         <div className="max-w-3xl mx-auto">
           <div className="bg-card rounded-3xl p-8 md:p-12 shadow-elegant border">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">TikTok Hook Generator</h2>
@@ -187,34 +215,6 @@ const Index = () => {
                 </>
               )}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 py-20 text-center">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-            Get Trends and Ideas for Your{" "}
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              TikTok
-            </span>
-            {" "}Channel
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-            Leverage AI to analyze trends, generate hashtags, and create captions for your videos
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <Button
-              variant="hero"
-              size="lg"
-              onClick={() => document.getElementById("early-access")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              Get Early Access
-            </Button>
-            <Button variant="outline" size="lg">
-              Learn More
-            </Button>
           </div>
         </div>
       </section>
