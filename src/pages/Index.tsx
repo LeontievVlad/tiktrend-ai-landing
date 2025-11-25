@@ -25,6 +25,57 @@ const Index = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hookTopic, setHookTopic] = useState("");
+  const [hooks, setHooks] = useState<string[]>([]);
+  const [isGeneratingHooks, setIsGeneratingHooks] = useState(false);
+  const [showHooks, setShowHooks] = useState(false);
+
+  const generateHooks = async () => {
+    if (!hookTopic.trim()) {
+      toast.error("Please enter a topic");
+      return;
+    }
+
+    setIsGeneratingHooks(true);
+    setShowHooks(false);
+
+    try {
+      const response = await fetch("https://hookgeneratorapi-production.up.railway.app/api/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Topic: hookTopic,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to generate hooks");
+      }
+
+      const data = await response.json();
+      
+      if (data.hooks && Array.isArray(data.hooks)) {
+        setHooks(data.hooks);
+        setShowHooks(true);
+        toast.success("✅ Hooks generated!");
+      } else {
+        throw new Error("Invalid response format");
+      }
+    } catch (error) {
+      console.error("Error generating hooks:", error);
+      toast.error("Failed to generate hooks. Please try again.");
+    } finally {
+      setIsGeneratingHooks(false);
+    }
+  };
+
+  const copyHooks = () => {
+    const hooksText = hooks.join("\n\n");
+    navigator.clipboard.writeText(hooksText);
+    toast.success("✅ Hooks copied to clipboard!");
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -86,6 +137,59 @@ const Index = () => {
           </div>
         </div>
       </header>
+
+      {/* Hook Generator Section */}
+      <section className="container mx-auto px-4 py-12">
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-card rounded-3xl p-8 md:p-12 shadow-elegant border">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">TikTok Hook Generator</h2>
+            <div className="space-y-4">
+              <Input
+                id="topic"
+                type="text"
+                placeholder="Введи тему відео..."
+                value={hookTopic}
+                onChange={(e) => setHookTopic(e.target.value)}
+                className="text-lg"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !isGeneratingHooks) {
+                    generateHooks();
+                  }
+                }}
+              />
+              <Button
+                variant="hero"
+                size="lg"
+                onClick={generateHooks}
+                disabled={isGeneratingHooks}
+                className="w-full"
+              >
+                {isGeneratingHooks ? "Generating..." : "Generate 20 hooks"}
+              </Button>
+              
+              {showHooks && hooks.length > 0 && (
+                <>
+                  <div className="mt-6 space-y-3 max-h-96 overflow-y-auto bg-muted/30 rounded-xl p-6">
+                    {hooks.map((hook, index) => (
+                      <div key={index} className="p-3 bg-background rounded-lg border">
+                        <p className="text-sm">{hook}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    onClick={copyHooks}
+                    className="w-full"
+                  >
+                    Copy all
+                  </Button>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-20 text-center">
