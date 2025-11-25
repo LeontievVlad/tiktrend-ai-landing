@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -29,10 +29,25 @@ const Index = () => {
   const [hooks, setHooks] = useState<string[]>([]);
   const [isGeneratingHooks, setIsGeneratingHooks] = useState(false);
   const [showHooks, setShowHooks] = useState(false);
+  const [hooksGenerationCount, setHooksGenerationCount] = useState(0);
+  const MAX_GENERATIONS = 3;
+
+  // Load generation count from localStorage
+  useEffect(() => {
+    const savedCount = localStorage.getItem("hooksGenerationCount");
+    if (savedCount) {
+      setHooksGenerationCount(parseInt(savedCount, 10));
+    }
+  }, []);
 
   const generateHooks = async () => {
     if (!hookTopic.trim()) {
       toast.error("Please enter a topic");
+      return;
+    }
+
+    if (hooksGenerationCount >= MAX_GENERATIONS) {
+      toast.error("You've reached the maximum number of generations (3)");
       return;
     }
 
@@ -59,7 +74,13 @@ const Index = () => {
       if (data.hooks && Array.isArray(data.hooks)) {
         setHooks(data.hooks);
         setShowHooks(true);
-        toast.success("✅ Hooks generated!");
+        
+        // Increment and save generation count
+        const newCount = hooksGenerationCount + 1;
+        setHooksGenerationCount(newCount);
+        localStorage.setItem("hooksGenerationCount", newCount.toString());
+        
+        toast.success(`✅ Hooks generated! (${newCount}/${MAX_GENERATIONS} uses)`);
       } else {
         throw new Error("Invalid response format");
       }
@@ -171,6 +192,11 @@ const Index = () => {
         <div className="max-w-3xl mx-auto">
           <div className="bg-card rounded-3xl p-8 md:p-12 shadow-elegant border">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">TikTok Hook Generator</h2>
+            <p className="text-center text-muted-foreground mb-4">
+              {hooksGenerationCount < MAX_GENERATIONS 
+                ? `${MAX_GENERATIONS - hooksGenerationCount} generations remaining`
+                : "No generations remaining"}
+            </p>
             <div className="space-y-4">
               <Input
                 id="topic"
@@ -189,10 +215,10 @@ const Index = () => {
                 variant="hero"
                 size="lg"
                 onClick={generateHooks}
-                disabled={isGeneratingHooks}
+                disabled={isGeneratingHooks || hooksGenerationCount >= MAX_GENERATIONS}
                 className="w-full"
               >
-                {isGeneratingHooks ? "Generating..." : "Generate 20 hooks"}
+                {isGeneratingHooks ? "Generating..." : hooksGenerationCount >= MAX_GENERATIONS ? "Limit Reached" : "Generate 20 hooks"}
               </Button>
               
               {showHooks && hooks.length > 0 && (
